@@ -12,10 +12,10 @@ This project gives you a full backend + database module for:
 - `bcryptjs` for password and biometric passcode hashing
 
 
-
 ```bash
 npm install
 npm run seed
+
 
 ## Seeded Credentials
 
@@ -28,7 +28,6 @@ npm run seed
 - IDs: `EMP001` to `EMP010`
 - Password: `Member@123`
 - Biometric passcodes are set in `src/seed.js`
-
 
 
 ### 1) Request OTP

@@ -6,6 +6,7 @@ const db = require('./db');
 const app = express();
 app.use(express.json());
 
+
 function generateOtp() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
@@ -45,7 +46,7 @@ app.post('/api/auth/login/request-otp', (req, res) => {
 
   const user = db.prepare('SELECT * FROM users WHERE employee_id = ?').get(employeeId);
   if (!user) {
-    return res.status(404).json({ error: 'Employee not found' });
+
   }
 
   const isPasswordValid = bcrypt.compareSync(password, user.password_hash);

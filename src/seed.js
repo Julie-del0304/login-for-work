@@ -15,15 +15,3 @@ const users = [
   { employeeId: 'EMP010', name: 'Member 10', role: 'member', mobile: '9000000011', password: 'Member@123', biometricPasscode: '343434' }
 ];
 
-const insertUser = db.prepare(`
-  INSERT INTO users (employee_id, name, role, mobile, password_hash, biometric_passcode)
-  VALUES (?, ?, ?, ?, ?, ?)
-`);
-
-for (const user of users) {
-  const passwordHash = bcrypt.hashSync(user.password, 10);
-  const biometricHash = bcrypt.hashSync(user.biometricPasscode, 10);
-  insertUser.run(user.employeeId, user.name, user.role, user.mobile, passwordHash, biometricHash);
-}
-
-console.log('Seeded users successfully.');
