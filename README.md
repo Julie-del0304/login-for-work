@@ -11,15 +11,11 @@ This project gives you a full backend + database module for:
 - SQLite (`better-sqlite3`)
 - `bcryptjs` for password and biometric passcode hashing
 
-## Quick Start
+
 
 ```bash
 npm install
 npm run seed
-npm start
-```
-
-Server starts at `http://localhost:3000`.
 
 ## Seeded Credentials
 
@@ -33,7 +29,7 @@ Server starts at `http://localhost:3000`.
 - Password: `Member@123`
 - Biometric passcodes are set in `src/seed.js`
 
-## API Flow
+
 
 ### 1) Request OTP
 `POST /api/auth/login/request-otp`
