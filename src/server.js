@@ -2,15 +2,10 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 const db = require('./db');
-const { seedUsers } = require('./seed');
 
 const app = express();
 app.use(express.json());
 
-const seedSummary = seedUsers();
-if (seedSummary.insertedCount > 0) {
-  console.log(`Auto-seeded users: ${seedSummary.insertedCount}`);
-}
 
 function generateOtp() {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -51,10 +46,7 @@ app.post('/api/auth/login/request-otp', (req, res) => {
 
   const user = db.prepare('SELECT * FROM users WHERE employee_id = ?').get(employeeId);
   if (!user) {
-    return res.status(404).json({
-      error: 'Employee not found',
-      hint: 'Check employeeId. Seed users are TL001 and EMP001-EMP010.'
-    });
+
   }
 
   const isPasswordValid = bcrypt.compareSync(password, user.password_hash);
